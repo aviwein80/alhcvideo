@@ -1,8 +1,12 @@
 import {COLORS, ILLO} from '../../theme';
 import type {Look} from './Person';
 
-// The recurring characters in the tour. Staff wear the brand colors; residents
-// wear soft neutrals so the two groups read at a glance.
+// The characters in the tour. Staff wear the brand colors; residents wear soft
+// neutrals so the two groups read at a glance.
+//
+// Each resident appears in ONE room only. A resident shown arriving in a
+// wheelchair or in therapy must never reappear walking or dancing later: that
+// would read as a before-and-after result, which the ad must not imply.
 export const CAST = {
 	nurse: {
 		skin: ILLO.skin[2],
@@ -105,6 +109,28 @@ export const CAST = {
 		bottom: ILLO.charcoal,
 		outfit: 'cardigan',
 		trim: COLORS.peach,
+		glasses: true,
+	},
+	pearl: {
+		skin: ILLO.skin[1],
+		hair: ILLO.hairWhite,
+		hairStyle: 'bun',
+		top: ILLO.sage,
+		sleeves: 'long',
+		bottom: ILLO.charcoal,
+		outfit: 'cardigan',
+		trim: ILLO.cream,
+		skirt: true,
+		shoes: COLORS.maroon,
+	},
+	henry: {
+		skin: ILLO.skin[2],
+		hair: ILLO.hairWhite,
+		hairStyle: 'short',
+		top: ILLO.denim,
+		sleeves: 'long',
+		bottom: ILLO.khaki,
+		outfit: 'sweater',
 		glasses: true,
 	},
 	frank: {

@@ -14,7 +14,10 @@ const clapGap = (b: number): number => {
 	return 1 - Math.max(0, toClap * 2 - 1);
 };
 
-/** Room 4 — good times. Music, a dance, and everyone clapping along. */
+/**
+ * Room 4 — good times. Music, a dance, and everyone clapping along. The
+ * dancers are residents who appear in no other room (see cast.ts).
+ */
 export const DiningRoom: React.FC<{t: number}> = ({t}) => {
 	const b = t / beats(1);
 	const beatSwing = Math.sin(b * Math.PI);
@@ -23,8 +26,8 @@ export const DiningRoom: React.FC<{t: number}> = ({t}) => {
 	// One twirl under the joined hands in the second half of the room.
 	const twirl = interpolate(b, [4, 6], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: EASE_IN_OUT});
 	const turning = twirl > 0 && twirl < 1;
-	const roseX = 900 + beatSwing * 20;
-	const walterX = 1096 + beatSwing * 20;
+	const pearlX = 900 + beatSwing * 20;
+	const henryX = 1096 + beatSwing * 20;
 	const handsY = -306 - bounce * 10 - (turning ? 34 : 0);
 
 	return (
@@ -99,14 +102,14 @@ export const DiningRoom: React.FC<{t: number}> = ({t}) => {
 
 			{/* The dance */}
 			<Person
-				x={walterX}
+				x={henryX}
 				y={STAND_Y}
 				scale={PERSON_SCALE}
 				facing={-1}
-				look={CAST.walter}
+				look={CAST.henry}
 				pose={{
 					blink: blink(t, 19),
-					armNear: {reach: [(walterX - roseX) / PERSON_SCALE / 2, handsY]},
+					armNear: {reach: [(henryX - pearlX) / PERSON_SCALE / 2, handsY]},
 					armFar: turning ? {angles: [20, 30]} : {reach: [118, -196]},
 					legNear: [8 * beatSwing, 6 + 8 * bounce],
 					legFar: [-8 * beatSwing, 6 + 8 * (1 - bounce)],
@@ -115,15 +118,15 @@ export const DiningRoom: React.FC<{t: number}> = ({t}) => {
 					headTilt: -beatSwing * 4,
 				}}
 			/>
-			<g transform={`translate(${roseX} 0) scale(${Math.cos(twirl * Math.PI * 2)} 1) translate(${-roseX} 0)`}>
+			<g transform={`translate(${pearlX} 0) scale(${Math.cos(twirl * Math.PI * 2)} 1) translate(${-pearlX} 0)`}>
 				<Person
-					x={roseX}
+					x={pearlX}
 					y={STAND_Y}
 					scale={PERSON_SCALE}
-					look={CAST.rose}
+					look={CAST.pearl}
 					pose={{
 					blink: blink(t, 37),
-						armNear: turning ? {angles: [168, 8]} : {reach: [(walterX - roseX) / PERSON_SCALE / 2, handsY]},
+						armNear: turning ? {angles: [168, 8]} : {reach: [(henryX - pearlX) / PERSON_SCALE / 2, handsY]},
 						armFar: turning ? {angles: [30, 40]} : {reach: [116, -262]},
 						legNear: [-8 * beatSwing, 6 + 8 * bounce],
 						legFar: [8 * beatSwing, 6 + 8 * (1 - bounce)],

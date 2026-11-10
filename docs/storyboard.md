@@ -91,7 +91,7 @@ the bar line. All people are illustrated characters.
 | 9–10 | Lobby (`Lobby.tsx`) | A caregiver wheels a resident in; the front desk waves; she waves back | "A warm, supportive environment" (T1) | "A warm, supportive environment." |
 | 11–12 | Therapy gym (`TherapyGym.tsx`) | A resident walks the parallel bars with a therapist; a colleague ticks off a plan | "Short-term rehabilitation" + "Personalized treatment plans" (T2) | "Short-term rehabilitation and long-term care," |
 | 13–14 | Resident suite (`Suite.tsx`) | A nurse brings tea to a resident in her armchair; the doctor stops by | "Long-term care" + "A comprehensive team" (T3) | "focused on supporting recovery, comfort, and overall wellness." |
-| 15–16 | Dining room (`DiningRoom.tsx`) | Music on the record player; two residents dance and twirl; staff and a friend clap on beats 2 and 4 | "Personalized havens of hospitality" (T4) | "And personalized havens of hospitality." |
+| 15–16 | Dining room (`DiningRoom.tsx`) | Music on the record player; two residents (new to the film) dance and twirl; staff and a friend clap on beats 2 and 4 | "Personalized havens of hospitality" (T4) | "And personalized havens of hospitality." |
 
 - **Sound:** full chorus from bar 9; a whoosh on each camera move; a soft pop
   as each label lands. **Out:** maroon panels wipe left.
@@ -129,7 +129,7 @@ the bar line. All people are illustrated characters.
 - **Text:** logo; "Find a center near you"; button "AutumnLakeHealthcare.com"
   (C9); "732-358-6883" (C10); footer disclaimer (C11).
 - **Motion:** logo reassembles; the headline reveals as it is spoken; button
-  and phone arrive on beats 4 and 5; the disclaimer fades in on beat 6.5; the
+  and phone arrive on beats 4 and 5; the disclaimer fades in on beat 5.5; the
   final chord on beat 8
   sends one soft pulse and a highlight across the button; hold to the end.
 - **Voice:** "Find a center near you at AutumnLakeHealthcare.com."
@@ -157,7 +157,9 @@ Stored with its timing in `src/edit.json` under `voice`.
 - People appear only as illustration. No photographs of people, no stock
   footage, nothing photoreal, no real residents or staff.
 - The rooms show the services the company names (rehabilitation, long-term
-  care, hospitality). Nothing depicts a medical result.
+  care, hospitality). Nothing depicts a medical result: each resident appears
+  in one room only, so nobody is seen in a wheelchair or in therapy and then
+  dancing later.
 - No statistics, outcomes or testimonials (none are published by the company).
 - Care is attributed to "each center"; the management-company disclaimer is on
   the end card.

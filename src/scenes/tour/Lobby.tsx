@@ -74,7 +74,7 @@ export const Lobby: React.FC<{t: number}> = ({t}) => {
 				<circle cx={1470} cy={330} r={122} fill={ILLO.cream} />
 				<circle cx={1470} cy={330} r={122} fill="none" stroke={COLORS.peach} strokeWidth={8} />
 				<g transform="translate(1373 268)">
-					<TreeMark height={110} color={COLORS.orange} opacity={1} />
+					<TreeMark height={110} color={COLORS.logoOrange} opacity={1} />
 				</g>
 			</RoomShell>
 

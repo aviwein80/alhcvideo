@@ -155,7 +155,9 @@ remotion.config.ts      Public dir, codec, quality
 - **People appear only as illustration.** No photographs or footage of
   patients, residents or staff, no stock imagery, nothing photoreal. The
   illustrated rooms show services the company names; they must not depict a
-  medical result or a specific real person or center.
+  medical result or a specific real person or center. Each resident character
+  appears in one room only (see `people/cast.ts`): never show someone in a
+  wheelchair or in therapy and then walking or dancing later.
 - Autumn Lake Healthcare is a management company; care is provided by each
   independently owned center. Attribute care to "each center" and keep the
   footer disclaimer on the end card.

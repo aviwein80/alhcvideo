@@ -43,10 +43,19 @@ revised for the second cut (illustrated tour, voiceover, 120 BPM edit).
 
 - S1: "These centers provide comprehensive care services, including short-term
   rehabilitation and long-term care, focused on supporting recovery, comfort,
-  and overall wellness." On S1 this sentence follows one about the New Jersey
-  centers. The same two service lines are corroborated outside New Jersey by
+  and overall wellness." **Scope caveat:** on S1 this sentence, and the next
+  one ("Each location delivers personalized treatment plans in a warm,
+  supportive environment…"), sit in a paragraph about the New Jersey centers
+  under the heading "Trusted Nursing Home in NJ". The ad uses phrases from
+  both for centers in general (rows T1–T3). The two service lines are
+  corroborated outside New Jersey by
   the navigation headings "SHORT-TERM REHAB" and "LONG-TERM LIVING" on S3
-  (Maryland), S4 (Connecticut), S5 (Wisconsin) and S6 (West Virginia).
+  (Maryland), S4 (Connecticut), S5 (Wisconsin) and S6 (West Virginia). The
+  descriptive phrases ("warm, supportive environment", "personalized treatment
+  plans", "recovery, comfort, and overall wellness") have no verbatim source
+  outside the New Jersey paragraph; the closest on other states' sites are
+  the headings "RECOVER IN COMFORT" and "Rest, Recover, Rejuvenate" (S3, S5).
+  Marketing should confirm these phrases are acceptable for all five states.
 - S1: "Each location delivers personalized treatment plans in a warm,
   supportive environment designed to help individuals heal, regain strength,
   and enhance their quality of life through compassionate, professional care."
@@ -127,7 +136,9 @@ letters); nothing is redrawn.
   helping residents. The characters are stylized, not based on any real
   person, and the rooms do not depict a specific center. They show the
   services the company names on S1 (rehabilitation, long-term care,
-  hospitality) and nothing that reads as a medical result. Skin, hair, wood
+  hospitality) and nothing that reads as a medical result: each resident
+  appears in one room only, so no one is shown in a wheelchair or in therapy
+  and then walking or dancing later. Skin, hair, wood
   and plant colors used only in the illustration are listed as `ILLO` in
   `src/theme/colors.ts`; they are supporting colors, not brand colors.
 

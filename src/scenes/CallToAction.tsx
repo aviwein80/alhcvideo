@@ -97,11 +97,11 @@ export const CallToAction: React.FC = () => {
 						width: 1480,
 						fontFamily: FONTS.body,
 						fontWeight: 400,
-						fontSize: 23,
+						fontSize: 24,
 						lineHeight: 1.5,
 						textAlign: 'center',
 						color: COLORS.ink,
-						opacity: 0.9 * ramp(frame, beats(6.5), 20),
+						opacity: 0.9 * ramp(frame, beats(5.5), 16),
 					}}
 				>
 					{disclaimer}
