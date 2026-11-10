@@ -7,7 +7,8 @@
     "studio": "remotion studio",
     "render": "remotion render BrandAd out/autumn-lake-brand-ad.mp4",
     "typecheck": "tsc --noEmit",
-    "logo": "node scripts/extract-logo-paths.mjs"
+    "logo": "node scripts/extract-logo-paths.mjs",
+    "audio": ".cache/venv/bin/python scripts/audio/build.py"
   },
   "dependencies": {
     "@remotion/cli": "4.0.542",

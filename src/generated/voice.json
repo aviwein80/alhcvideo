@@ -1,0 +1,518 @@
+{
+  "voice": "af_heart",
+  "clips": {
+    "belief": {
+      "seconds": 3.011,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "Our philosophy, the healing process should be holistic.",
+      "words": [
+        {
+          "w": "our",
+          "start": 0.0,
+          "end": 0.16
+        },
+        {
+          "w": "philosophy",
+          "start": 0.16,
+          "end": 0.66
+        },
+        {
+          "w": "the",
+          "start": 1.14,
+          "end": 1.26
+        },
+        {
+          "w": "healing",
+          "start": 1.26,
+          "end": 1.52
+        },
+        {
+          "w": "process",
+          "start": 1.52,
+          "end": 1.9
+        },
+        {
+          "w": "should",
+          "start": 1.9,
+          "end": 2.22
+        },
+        {
+          "w": "be",
+          "start": 2.22,
+          "end": 2.34
+        },
+        {
+          "w": "holistic",
+          "start": 2.34,
+          "end": 2.74
+        }
+      ]
+    },
+    "cornerstones": {
+      "seconds": 5.555,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "Clinical excellence and compassionate care are the cornerstones of each Autumn Lake Health Care Centre.",
+      "words": [
+        {
+          "w": "clinical",
+          "start": 0.0,
+          "end": 0.36
+        },
+        {
+          "w": "excellence",
+          "start": 0.36,
+          "end": 0.86
+        },
+        {
+          "w": "and",
+          "start": 0.86,
+          "end": 1.3
+        },
+        {
+          "w": "compassionate",
+          "start": 1.3,
+          "end": 1.82
+        },
+        {
+          "w": "care",
+          "start": 1.82,
+          "end": 2.24
+        },
+        {
+          "w": "are",
+          "start": 2.24,
+          "end": 2.78
+        },
+        {
+          "w": "the",
+          "start": 2.78,
+          "end": 2.9
+        },
+        {
+          "w": "cornerstones",
+          "start": 2.9,
+          "end": 3.5
+        },
+        {
+          "w": "of",
+          "start": 3.5,
+          "end": 3.72
+        },
+        {
+          "w": "each",
+          "start": 3.72,
+          "end": 3.96
+        },
+        {
+          "w": "autumn",
+          "start": 3.96,
+          "end": 4.32
+        },
+        {
+          "w": "lake",
+          "start": 4.32,
+          "end": 4.6
+        },
+        {
+          "w": "health",
+          "start": 4.6,
+          "end": 4.88
+        },
+        {
+          "w": "care",
+          "start": 4.88,
+          "end": 5.08
+        },
+        {
+          "w": "centre",
+          "start": 5.08,
+          "end": 5.36
+        }
+      ]
+    },
+    "welcome": {
+      "seconds": 0.893,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "Welcome Home",
+      "words": [
+        {
+          "w": "welcome",
+          "start": 0.0,
+          "end": 0.38
+        },
+        {
+          "w": "home",
+          "start": 0.38,
+          "end": 0.68
+        }
+      ]
+    },
+    "lobby": {
+      "seconds": 1.863,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "A warm, supportive environment.",
+      "words": [
+        {
+          "w": "a",
+          "start": 0.0,
+          "end": 0.12
+        },
+        {
+          "w": "warm",
+          "start": 0.12,
+          "end": 0.48
+        },
+        {
+          "w": "supportive",
+          "start": 0.7,
+          "end": 1.04
+        },
+        {
+          "w": "environment",
+          "start": 1.04,
+          "end": 1.48
+        }
+      ]
+    },
+    "gym": {
+      "seconds": 2.758,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "short-term rehabilitation, and long-term care.",
+      "words": [
+        {
+          "w": "short",
+          "start": 0.0,
+          "end": 0.26
+        },
+        {
+          "w": "term",
+          "start": 0.26,
+          "end": 0.56
+        },
+        {
+          "w": "rehabilitation",
+          "start": 0.56,
+          "end": 1.12
+        },
+        {
+          "w": "and",
+          "start": 1.68,
+          "end": 1.86
+        },
+        {
+          "w": "long",
+          "start": 1.86,
+          "end": 2.06
+        },
+        {
+          "w": "term",
+          "start": 2.06,
+          "end": 2.3
+        },
+        {
+          "w": "care",
+          "start": 2.3,
+          "end": 2.62
+        }
+      ]
+    },
+    "suite": {
+      "seconds": 3.7,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "focused on supporting recovery, comfort, and overall wellness.",
+      "words": [
+        {
+          "w": "focused",
+          "start": 0.0,
+          "end": 0.32
+        },
+        {
+          "w": "on",
+          "start": 0.32,
+          "end": 0.58
+        },
+        {
+          "w": "supporting",
+          "start": 0.58,
+          "end": 0.96
+        },
+        {
+          "w": "recovery",
+          "start": 0.96,
+          "end": 1.52
+        },
+        {
+          "w": "comfort",
+          "start": 1.92,
+          "end": 2.18
+        },
+        {
+          "w": "and",
+          "start": 2.58,
+          "end": 2.66
+        },
+        {
+          "w": "overall",
+          "start": 2.66,
+          "end": 3.06
+        },
+        {
+          "w": "wellness",
+          "start": 3.06,
+          "end": 3.44
+        }
+      ]
+    },
+    "dining": {
+      "seconds": 2.374,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "and personalized havens of hospitality.",
+      "words": [
+        {
+          "w": "and",
+          "start": 0.0,
+          "end": 0.16
+        },
+        {
+          "w": "personalized",
+          "start": 0.16,
+          "end": 0.72
+        },
+        {
+          "w": "havens",
+          "start": 0.72,
+          "end": 1.22
+        },
+        {
+          "w": "of",
+          "start": 1.22,
+          "end": 1.52
+        },
+        {
+          "w": "hospitality",
+          "start": 1.52,
+          "end": 2.04
+        }
+      ]
+    },
+    "network": {
+      "seconds": 6.536,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "A network of independent centers across Connecticut, New Jersey, Maryland, West Virginia, and Wisconsin.",
+      "words": [
+        {
+          "w": "a",
+          "start": 0.0,
+          "end": 0.14
+        },
+        {
+          "w": "network",
+          "start": 0.14,
+          "end": 0.4
+        },
+        {
+          "w": "of",
+          "start": 0.4,
+          "end": 0.6
+        },
+        {
+          "w": "independent",
+          "start": 0.6,
+          "end": 1.04
+        },
+        {
+          "w": "centers",
+          "start": 1.04,
+          "end": 1.6
+        },
+        {
+          "w": "across",
+          "start": 1.6,
+          "end": 2.08
+        },
+        {
+          "w": "connecticut",
+          "start": 2.08,
+          "end": 2.54
+        },
+        {
+          "w": "new",
+          "start": 3.14,
+          "end": 3.24
+        },
+        {
+          "w": "jersey",
+          "start": 3.24,
+          "end": 3.58
+        },
+        {
+          "w": "maryland",
+          "start": 3.9,
+          "end": 4.18
+        },
+        {
+          "w": "west",
+          "start": 4.86,
+          "end": 5.02
+        },
+        {
+          "w": "virginia",
+          "start": 5.02,
+          "end": 5.42
+        },
+        {
+          "w": "and",
+          "start": 5.76,
+          "end": 5.8
+        },
+        {
+          "w": "wisconsin",
+          "start": 5.8,
+          "end": 6.16
+        }
+      ]
+    },
+    "family": {
+      "seconds": 2.886,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "There are many healthcare groups, but here you'll find family.",
+      "words": [
+        {
+          "w": "there",
+          "start": 0.0,
+          "end": 0.12
+        },
+        {
+          "w": "are",
+          "start": 0.12,
+          "end": 0.24
+        },
+        {
+          "w": "many",
+          "start": 0.24,
+          "end": 0.46
+        },
+        {
+          "w": "healthcare",
+          "start": 0.46,
+          "end": 0.84
+        },
+        {
+          "w": "groups",
+          "start": 0.84,
+          "end": 1.3
+        },
+        {
+          "w": "but",
+          "start": 1.58,
+          "end": 1.72
+        },
+        {
+          "w": "here",
+          "start": 1.72,
+          "end": 1.94
+        },
+        {
+          "w": "you'll",
+          "start": 1.94,
+          "end": 2.16
+        },
+        {
+          "w": "find",
+          "start": 2.16,
+          "end": 2.3
+        },
+        {
+          "w": "family",
+          "start": 2.3,
+          "end": 2.58
+        }
+      ]
+    },
+    "tagline": {
+      "seconds": 1.483,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "Good care, good times.",
+      "words": [
+        {
+          "w": "good",
+          "start": 0.0,
+          "end": 0.2
+        },
+        {
+          "w": "care",
+          "start": 0.2,
+          "end": 0.48
+        },
+        {
+          "w": "good",
+          "start": 0.8,
+          "end": 0.88
+        },
+        {
+          "w": "times",
+          "start": 0.88,
+          "end": 1.2
+        }
+      ]
+    },
+    "cta": {
+      "seconds": 3.205,
+      "speed": 1.0,
+      "fits": true,
+      "transcript": "Find a center near you at autumnlakehealthcare.com.",
+      "words": [
+        {
+          "w": "find",
+          "start": 0.0,
+          "end": 0.24
+        },
+        {
+          "w": "a",
+          "start": 0.24,
+          "end": 0.36
+        },
+        {
+          "w": "center",
+          "start": 0.36,
+          "end": 0.56
+        },
+        {
+          "w": "near",
+          "start": 0.56,
+          "end": 0.8
+        },
+        {
+          "w": "you",
+          "start": 0.8,
+          "end": 1.22
+        },
+        {
+          "w": "at",
+          "start": 1.22,
+          "end": 1.52
+        },
+        {
+          "w": "autumnlakehealthcare",
+          "start": 1.52,
+          "end": 2.46
+        },
+        {
+          "w": "com",
+          "start": 2.46,
+          "end": 3.14
+        }
+      ]
+    }
+  }
+}
