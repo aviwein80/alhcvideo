@@ -10,15 +10,17 @@ import {CAPTION_SAFE, COLORS, FONTS, beats} from '../theme';
 
 const CARD = {width: 900, height: 620, radius: 44};
 // Beat on which each photo arrives.
-const PHOTO_BEATS = [0, 3, 5.5, 8, 10.5];
-const SLIDE = 18;
+const PHOTO_BEATS = [0, 3, 6, 9, 12];
+const SLIDE = 12;
+// The first state lands on this beat, then one every two beats.
+const FIRST_STATE_BEAT = 6;
 
-/** Scene 6 — the network: five states on the left, center photos on the right. */
+/** Scene 5 — the network: five states on the left, center photos on the right. */
 export const Network: React.FC = () => {
 	const frame = useCurrentFrame();
 	const {durationInFrames} = useVideoConfig();
 	const {label, lines, states, photos} = CONTENT.network;
-	const open = ramp(frame, 6, 30, EASE_IN_OUT);
+	const open = ramp(frame, 4, 22, EASE_IN_OUT);
 	const headline: React.CSSProperties = {fontFamily: FONTS.headline, fontWeight: 600, fontSize: 58, color: COLORS.white};
 
 	return (
@@ -26,15 +28,15 @@ export const Network: React.FC = () => {
 			<AbsoluteFill style={{flexDirection: 'row', alignItems: 'center', padding: `0 110px ${CAPTION_SAFE - 30}px 130px`}}>
 				{/* Left: copy and the list of states. */}
 				<div style={{flex: 1}}>
-					<Label text={label} frame={frame} start={8} color={COLORS.peach} />
+					<Label text={label} frame={frame} start={6} color={COLORS.peach} />
 					<div style={{height: 30}} />
 					{lines.map((l, i) => (
-						<WordReveal key={l} text={l} frame={frame} start={beats(0.75) + i * 12} stagger={3} style={headline} />
+						<WordReveal key={l} text={l} frame={frame} start={beats(0.8) + i * 9} stagger={2} duration={16} style={headline} />
 					))}
 					<div style={{height: 40}} />
 					{states.map((state, i) => {
-						const at = beats(5 + i);
-						const p = ramp(frame, at, 18);
+						const at = beats(FIRST_STATE_BEAT + i * 2);
+						const p = ramp(frame, at, 14);
 						return (
 							<div
 								key={state}
@@ -44,7 +46,8 @@ export const Network: React.FC = () => {
 									gap: 24,
 									height: 74,
 									opacity: p,
-									transform: `translateX(${(1 - p) * -50}px)`,
+									transform: `translateX(${(1 - p) * -50}px) scale(${1 + 0.12 * (1 - pop(frame, at, 9))})`,
+									transformOrigin: 'left center',
 								}}
 							>
 								<Leaf size={40} scale={pop(frame, at)} rotate={90} />

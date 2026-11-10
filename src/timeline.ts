@@ -1,43 +1,58 @@
 import type React from 'react';
 import type {WipeDirection} from './components/PanelWipe';
+import edit from './edit.json';
 import {Belief} from './scenes/Belief';
 import {CallToAction} from './scenes/CallToAction';
 import {Cornerstones} from './scenes/Cornerstones';
 import {Family} from './scenes/Family';
 import {LogoIntro} from './scenes/LogoIntro';
 import {Network} from './scenes/Network';
-import {Services} from './scenes/Services';
 import {Tagline} from './scenes/Tagline';
-import {Team} from './scenes/Team';
+import {Tour} from './scenes/Tour';
 import {COLORS, beats} from './theme';
 
-type SceneDef = {
-	id: string;
-	component: React.FC;
-	/** Length in beats. Keep to whole bars (multiples of 4) or half bars. */
-	beats: number;
-	/** Wipe that brings this scene in: [leading accent, color of this scene]. */
-	wipe?: {direction: WipeDirection; colors: [string, string]};
+// The edit itself (scene order, length in beats, wipe per cut) lives in
+// src/edit.json so the audio scripts can read the same cue sheet. This file
+// attaches a component to each scene id and works out start frames.
+const COMPONENTS: Record<string, React.FC> = {
+	LogoIntro,
+	Belief,
+	Cornerstones,
+	Tour,
+	Network,
+	Family,
+	Tagline,
+	CallToAction,
 };
 
-// The edit. Reorder, retime or remove scenes here; cuts and wipes follow.
-const SCENE_ORDER: SceneDef[] = [
-	{id: 'LogoIntro', component: LogoIntro, beats: 8},
-	{id: 'Belief', component: Belief, beats: 8, wipe: {direction: 'up', colors: [COLORS.orange, COLORS.maroonDeep]}},
-	{id: 'Cornerstones', component: Cornerstones, beats: 8, wipe: {direction: 'left', colors: [COLORS.peach, COLORS.paper]}},
-	{id: 'Services', component: Services, beats: 12, wipe: {direction: 'right', colors: [COLORS.orange, COLORS.paper]}},
-	{id: 'Team', component: Team, beats: 10, wipe: {direction: 'up', colors: [COLORS.maroonDeep, COLORS.orange]}},
-	{id: 'Network', component: Network, beats: 14, wipe: {direction: 'left', colors: [COLORS.peach, COLORS.maroonDeep]}},
-	{id: 'Family', component: Family, beats: 8, wipe: {direction: 'right', colors: [COLORS.orange, COLORS.paper]}},
-	{id: 'Tagline', component: Tagline, beats: 8, wipe: {direction: 'up', colors: [COLORS.brick, COLORS.maroonDeep]}},
-	{id: 'CallToAction', component: CallToAction, beats: 12, wipe: {direction: 'left', colors: [COLORS.peach, COLORS.paper]}},
-];
+type ColorName = keyof typeof COLORS;
+type SceneEntry = {
+	id: string;
+	beats: number;
+	/** Panel wipe that brings the scene in. Without one the cut is hard. */
+	wipe?: {direction: string; colors: string[]};
+};
 
 let cursor = 0;
-export const SCENES = SCENE_ORDER.map((scene) => {
+export const SCENES = (edit.scenes as SceneEntry[]).map((scene) => {
+	const component = COMPONENTS[scene.id];
+	if (!component) {
+		throw new Error(`src/edit.json names a scene with no component: ${scene.id}`);
+	}
 	const from = beats(cursor);
 	cursor += scene.beats;
-	return {...scene, from, durationInFrames: beats(cursor) - from};
+	return {
+		id: scene.id,
+		component,
+		from,
+		durationInFrames: beats(cursor) - from,
+		wipe: scene.wipe
+			? {
+					direction: scene.wipe.direction as WipeDirection,
+					colors: scene.wipe.colors.map((name) => COLORS[name as ColorName]) as [string, string],
+				}
+			: undefined,
+	};
 });
 
 export const TOTAL_FRAMES = beats(cursor);

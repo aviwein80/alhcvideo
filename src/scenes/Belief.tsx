@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 import {Background} from '../components/Background';
 import {Label} from '../components/Label';
 import {TreeMark} from '../components/TreeMark';
@@ -12,9 +12,12 @@ import {CAPTION_SAFE, COLORS, FONTS, beats} from '../theme';
 /** Scene 2 — the philosophy statement, landing on "holistic." */
 export const Belief: React.FC = () => {
 	const frame = useCurrentFrame();
+	const {durationInFrames} = useVideoConfig();
 	const {label, lines, emphasis} = CONTENT.belief;
 	const land = beats(4);
 	const line: React.CSSProperties = {fontFamily: FONTS.headline, fontWeight: 600, fontSize: 116, color: COLORS.white};
+	// Slow push that tightens through the build into the next scene.
+	const push = interpolate(frame, [0, land, durationInFrames], [1, 1.02, 1.09]);
 
 	return (
 		<Background variant="maroon">
@@ -22,13 +25,20 @@ export const Belief: React.FC = () => {
 				height={1000}
 				color={COLORS.peach}
 				opacity={0.07}
-				style={{position: 'absolute', right: -220, top: 30, transform: `scale(${1 + frame / 2200})`}}
+				style={{position: 'absolute', right: -220, top: 30, transform: `scale(${1 + frame / 1200})`}}
 			/>
-			<AbsoluteFill style={{padding: `0 170px ${CAPTION_SAFE}px`, justifyContent: 'center'}}>
+			<AbsoluteFill
+				style={{
+					padding: `0 170px ${CAPTION_SAFE}px`,
+					justifyContent: 'center',
+					transform: `scale(${push})`,
+					transformOrigin: '30% 60%',
+				}}
+			>
 				<Label text={label} frame={frame} start={8} color={COLORS.peach} />
 				<div style={{height: 40}} />
-				<WordReveal text={lines[0]} frame={frame} start={beats(0.75)} stagger={4} style={line} />
-				<WordReveal text={lines[1]} frame={frame} start={beats(2)} stagger={5} style={line} />
+				<WordReveal text={lines[0]} frame={frame} start={beats(0.9)} stagger={3} duration={16} style={line} />
+				<WordReveal text={lines[1]} frame={frame} start={beats(2.4)} stagger={4} duration={16} style={line} />
 				<div
 					style={{
 						position: 'relative',
@@ -39,13 +49,13 @@ export const Belief: React.FC = () => {
 						fontSize: 250,
 						lineHeight: 1.05,
 						color: COLORS.white,
-						opacity: ramp(frame, land, 8),
+						opacity: ramp(frame, land, 6),
 						transform: `scale(${0.8 + 0.2 * pop(frame, land)})`,
 						transformOrigin: 'left bottom',
 					}}
 				>
 					{emphasis}
-					<Underline frame={frame} start={land + 8} duration={22} color={COLORS.orange} thickness={16} />
+					<Underline frame={frame} start={land + 6} duration={18} color={COLORS.orange} thickness={16} />
 				</div>
 			</AbsoluteFill>
 		</Background>

@@ -1,6 +1,19 @@
 // Every word that appears on screen, in one place. Each block names the row
 // in docs/research.md ("Claims register") that it comes from. If you change
 // copy here, update the register so every claim still has a source.
+// Spoken lines and captions live in src/edit.json ("voice").
+
+// T1–T4 — labels for the four illustrated rooms of the tour.
+const rooms: {title: string; chip?: string}[] = [
+	// T1 — homepage: "...in a warm, supportive environment..."
+	{title: 'A warm, supportive environment'},
+	// T2 — homepage: "short-term rehabilitation" / "personalized treatment plans"
+	{title: 'Short-term rehabilitation', chip: 'Personalized treatment plans'},
+	// T3 — homepage: "long-term care" / "...comprise a comprehensive team..."
+	{title: 'Long-term care', chip: 'A comprehensive team'},
+	// T4 — homepage: "...personalized havens of hospitality..."
+	{title: 'Personalized havens of hospitality'},
+];
 
 export const CONTENT = {
 	// C1 — homepage: "...have a philosophy, and we maintain that the healing
@@ -21,27 +34,10 @@ export const CONTENT = {
 		lines: ['The cornerstones of each', 'Autumn Lake Healthcare center.'],
 	},
 
-	// C3, C4 — homepage: "...comprehensive care services, including short-term
-	// rehabilitation and long-term care, focused on supporting recovery,
-	// comfort, and overall wellness." / "...personalized treatment plans..."
-	services: {
-		label: 'Comprehensive care services',
-		cards: [
-			['Short-term', 'rehabilitation'],
-			['Long-term', 'care'],
-			['Personalized', 'treatment plans'],
-		],
-		footer: 'Focused on supporting recovery, comfort, and overall wellness.',
-		footerHighlights: ['recovery,', 'comfort,', 'wellness.'],
-	},
-
-	// C5 — homepage: "...doctors, therapists, and specialists comprise a
-	// comprehensive team devoted to creating personalized havens of
-	// hospitality..."
-	team: {
-		roles: ['Doctors.', 'Therapists.', 'Specialists.'],
-		headline: 'A comprehensive team',
-		lines: ['devoted to creating personalized', 'havens of hospitality.'],
+	tour: {
+		// T0 — "Welcome Home" heading on center sites (S3, S5).
+		doors: ['Welcome', 'home.'],
+		rooms,
 	},
 
 	// C6 — homepage heading and sentence; "center's" corrected to "centers".
@@ -79,4 +75,4 @@ export const CONTENT = {
 		disclaimer:
 			'Autumn Lake Healthcare is a management company that provides non-healthcare services to licensed healthcare centers. Healthcare related services are provided solely by each independently owned and operated Healthcare Center. Autumn Lake Healthcare licenses the use of its name to Autumn Lake Healthcare Facilities.',
 	},
-} as const;
+};

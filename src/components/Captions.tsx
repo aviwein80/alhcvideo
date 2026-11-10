@@ -1,18 +1,18 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
-import {CAPTIONS} from '../captions';
-import {FONTS, beats} from '../theme';
+import {VOICE_CUES} from '../audio';
+import {FONTS} from '../theme';
 
-/** Caption track for the narration script. Runs over the whole film. */
+/** Captions for the spoken lines. Text and timing come from src/edit.json. */
 export const Captions: React.FC = () => {
 	const frame = useCurrentFrame();
-	const cue = CAPTIONS.find((c) => frame >= beats(c.from) && frame < beats(c.to));
+	const HOLD = 8;
+	const cue = VOICE_CUES.find((c) => frame >= c.from && frame < c.from + c.durationInFrames + HOLD);
 	if (!cue) {
 		return null;
 	}
-	const start = beats(cue.from);
-	const end = beats(cue.to);
-	const opacity = interpolate(frame, [start, start + 6, end - 6, end], [0, 1, 1, 0], {
+	const end = cue.from + cue.durationInFrames + HOLD;
+	const opacity = interpolate(frame, [cue.from, cue.from + 5, end - 5, end], [0, 1, 1, 0], {
 		extrapolateLeft: 'clamp',
 		extrapolateRight: 'clamp',
 	});

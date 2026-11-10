@@ -1,60 +1,54 @@
 import React from 'react';
-import {AbsoluteFill, Easing, interpolate, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 import {Background} from '../components/Background';
+import {Flash} from '../components/Flash';
 import {WordReveal} from '../components/WordReveal';
 import {CONTENT} from '../content';
-import {pop, ramp} from '../lib/anim';
-import {CAPTION_SAFE, COLORS, FONTS, beats} from '../theme';
+import {pop, ramp, rand} from '../lib/anim';
+import {COLORS, FONTS, HEIGHT, WIDTH, beats} from '../theme';
 
-const BLOCK_W = 770;
-const BLOCK_H = 330;
+// The two blocks at rest: a pill 1540 wide, centred, split down the middle.
+const BLOCK = {left: 190, top: 220, height: 330, radius: 44};
 
-const Block: React.FC<{lines: readonly string[]; color: string; side: 'left' | 'right'; offset: number}> = ({
-	lines,
-	color,
-	side,
-	offset,
-}) => (
-	<div
-		style={{
-			width: BLOCK_W,
-			height: BLOCK_H,
-			backgroundColor: color,
-			borderRadius: side === 'left' ? '44px 0 0 44px' : '0 44px 44px 0',
-			transform: `translateX(${side === 'left' ? -offset : offset}px)`,
-			display: 'flex',
-			flexDirection: 'column',
-			justifyContent: 'center',
-			padding: side === 'left' ? '0 0 0 80px' : '0 0 0 108px',
-			fontFamily: FONTS.headline,
-			fontWeight: 700,
-			fontSize: 92,
-			lineHeight: 1.04,
-			color: COLORS.white,
-		}}
-	>
-		{lines.map((l) => (
-			<div key={l}>{l}</div>
-		))}
-	</div>
-);
-
-/** Scene 3 — two blocks lock together: the cornerstones of each center. */
+/**
+ * Scene 3 — lands on the first drop. Two blocks are already locked together
+ * when the scene cuts in, with a flash and a jolt; at the end they swell to
+ * fill the frame and become the doors of the next scene.
+ */
 export const Cornerstones: React.FC = () => {
 	const frame = useCurrentFrame();
-	const {left, right, joiner, lines} = CONTENT.cornerstones;
-	const meet = beats(1.5);
+	const {durationInFrames} = useVideoConfig();
+	const {left, joiner, right, lines} = CONTENT.cornerstones;
 
-	const offset = interpolate(frame, [2, meet], [1150, 0], {
-		extrapolateLeft: 'clamp',
-		extrapolateRight: 'clamp',
-		easing: Easing.in(Easing.quad),
-	});
-	// A short, decaying jolt when the blocks meet.
-	const since = frame - meet;
-	const jolt = since >= 0 ? 1 + 0.045 * Math.exp(-since / 5) * Math.cos(since / 2) : 1;
-	const ring = ramp(frame, meet, 26);
-	const text: React.CSSProperties = {
+	// Impact on the cut: punch-in, a short shake and a ring.
+	const punch = interpolate(frame, [0, 10], [1.2, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+	const shake = Math.max(0, 1 - frame / 10) * 16;
+	const ring = ramp(frame, 0, 26);
+
+	// Exit: copy clears, then the blocks grow to the full frame.
+	const clear = ramp(frame, durationInFrames - beats(1.6), beats(0.5), Easing.in(Easing.quad));
+	const grow = ramp(frame, durationInFrames - beats(1), beats(1), Easing.in(Easing.cubic));
+	const lerp = (a: number, b: number) => a + (b - a) * grow;
+	const top = lerp(BLOCK.top, 0);
+	const height = lerp(BLOCK.height, HEIGHT);
+	const edge = lerp(BLOCK.left, 0);
+	const radius = BLOCK.radius * (1 - grow);
+
+	const blockText: React.CSSProperties = {
+		position: 'absolute',
+		top: BLOCK.top,
+		height: BLOCK.height,
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		fontFamily: FONTS.headline,
+		fontWeight: 700,
+		fontSize: 92,
+		lineHeight: 1.04,
+		color: COLORS.white,
+		opacity: 1 - clear,
+	};
+	const support: React.CSSProperties = {
 		fontFamily: FONTS.headline,
 		fontWeight: 600,
 		fontSize: 66,
@@ -64,53 +58,88 @@ export const Cornerstones: React.FC = () => {
 
 	return (
 		<Background variant="paper">
-			<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', paddingBottom: CAPTION_SAFE}}>
-				<div style={{position: 'relative', display: 'flex', transform: `scale(${jolt})`}}>
-					<Block lines={left} color={COLORS.maroon} side="left" offset={offset} />
-					<Block lines={right} color={COLORS.orange} side="right" offset={offset} />
-					{/* Pulse and "&" badge on the seam. */}
-					<div
-						style={{
-							position: 'absolute',
-							left: '50%',
-							top: '50%',
-							width: 1100,
-							height: 1100,
-							margin: -550,
-							borderRadius: '50%',
-							border: `6px solid ${COLORS.peach}`,
-							transform: `scale(${ring})`,
-							opacity: frame >= meet ? 0.9 * (1 - ring) : 0,
-						}}
-					/>
-					<div
-						style={{
-							position: 'absolute',
-							left: '50%',
-							top: '50%',
-							width: 132,
-							height: 132,
-							margin: -66,
-							borderRadius: '50%',
-							backgroundColor: COLORS.white,
-							boxShadow: '0 10px 30px rgba(124, 38, 30, 0.28)',
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'center',
-							fontFamily: FONTS.headline,
-							fontWeight: 700,
-							fontSize: 84,
-							color: COLORS.maroon,
-							transform: `scale(${pop(frame, meet + 1)})`,
-						}}
-					>
-						<span style={{marginTop: -6}}>{joiner}</span>
-					</div>
+			<AbsoluteFill
+				style={{
+					transform: `translate(${(rand(frame) - 0.5) * shake}px, ${(rand(frame + 50) - 0.5) * shake}px) scale(${punch})`,
+					transformOrigin: `${WIDTH / 2}px ${BLOCK.top + BLOCK.height / 2}px`,
+				}}
+			>
+				<div
+					style={{
+						position: 'absolute',
+						left: edge,
+						top,
+						width: WIDTH / 2 - edge,
+						height,
+						backgroundColor: COLORS.maroon,
+						borderRadius: `${radius}px 0 0 ${radius}px`,
+					}}
+				/>
+				<div
+					style={{
+						position: 'absolute',
+						left: WIDTH / 2,
+						top,
+						width: WIDTH / 2 - edge,
+						height,
+						backgroundColor: COLORS.orange,
+						borderRadius: `0 ${radius}px ${radius}px 0`,
+					}}
+				/>
+				<div style={{...blockText, left: BLOCK.left + 80}}>
+					{left.map((l) => (
+						<div key={l}>{l}</div>
+					))}
 				</div>
-				<div style={{height: 76}} />
-				<WordReveal text={lines[0]} frame={frame} start={beats(3.5)} stagger={3} style={text} />
-				<WordReveal text={lines[1]} frame={frame} start={beats(3.5) + 14} stagger={3} style={text} />
+				<div style={{...blockText, left: WIDTH / 2 + 108}}>
+					{right.map((l) => (
+						<div key={l}>{l}</div>
+					))}
+				</div>
+
+				{/* Pulse and "&" badge on the seam. */}
+				<div
+					style={{
+						position: 'absolute',
+						left: WIDTH / 2 - 700,
+						top: BLOCK.top + BLOCK.height / 2 - 700,
+						width: 1400,
+						height: 1400,
+						borderRadius: '50%',
+						border: `8px solid ${COLORS.peach}`,
+						transform: `scale(${ring})`,
+						opacity: 0.9 * (1 - ring),
+					}}
+				/>
+				<div
+					style={{
+						position: 'absolute',
+						left: WIDTH / 2 - 66,
+						top: BLOCK.top + BLOCK.height / 2 - 66,
+						width: 132,
+						height: 132,
+						borderRadius: '50%',
+						backgroundColor: COLORS.white,
+						boxShadow: '0 10px 30px rgba(124, 38, 30, 0.28)',
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+						fontFamily: FONTS.headline,
+						fontWeight: 700,
+						fontSize: 84,
+						color: COLORS.maroon,
+						transform: `scale(${pop(frame, 3) * (1 - clear)})`,
+					}}
+				>
+					<span style={{marginTop: -6}}>{joiner}</span>
+				</div>
+
+				<div style={{position: 'absolute', left: 0, right: 0, top: BLOCK.top + BLOCK.height + 74, opacity: 1 - clear}}>
+					<WordReveal text={lines[0]} frame={frame} start={beats(5.5)} stagger={3} duration={16} style={support} />
+					<WordReveal text={lines[1]} frame={frame} start={beats(7)} stagger={3} duration={16} style={support} />
+				</div>
 			</AbsoluteFill>
+			<Flash frame={frame} />
 		</Background>
 	);
 };

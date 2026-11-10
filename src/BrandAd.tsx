@@ -1,26 +1,25 @@
 import React from 'react';
-import {AbsoluteFill, Html5Audio, Sequence, getStaticFiles, interpolate, useVideoConfig} from 'remotion';
+import {AbsoluteFill, Html5Audio, Sequence, staticFile} from 'remotion';
+import {AUDIO_FILES, MIX, VOICE_CUES, hasAsset, scoreVolume} from './audio';
 import {Captions} from './components/Captions';
 import {PanelWipe} from './components/PanelWipe';
-import {COLORS, FPS, WIPE_FRAMES} from './theme';
+import {COLORS, WIPE_FRAMES} from './theme';
 import {SCENES} from './timeline';
 
 export type BrandAdProps = {
-	/** Show the narration script as captions. */
+	/** Show captions for the spoken lines. */
 	showCaptions: boolean;
+	/** Play the voiceover. Turn off for a music-only cut. */
+	voiceover: boolean;
 };
 
-/** The first audio file found in assets/music, if any. */
-const findMusic = () => getStaticFiles().find((f) => /^music\/.+\.(mp3|wav|m4a|aac)$/i.test(f.name));
-
-export const BrandAd: React.FC<BrandAdProps> = ({showCaptions}) => {
-	const {durationInFrames} = useVideoConfig();
-	const music = findMusic();
+export const BrandAd: React.FC<BrandAdProps> = ({showCaptions, voiceover}) => {
+	const voiceCues = voiceover ? VOICE_CUES.filter((cue) => hasAsset(AUDIO_FILES.voice(cue.id))) : [];
 
 	return (
 		<AbsoluteFill style={{backgroundColor: COLORS.paper}}>
-			{SCENES.map(({id, component: Scene, from, durationInFrames: length}) => (
-				<Sequence key={id} name={id} from={from} durationInFrames={length}>
+			{SCENES.map(({id, component: Scene, from, durationInFrames}) => (
+				<Sequence key={id} name={id} from={from} durationInFrames={durationInFrames}>
 					<Scene />
 				</Sequence>
 			))}
@@ -35,17 +34,15 @@ export const BrandAd: React.FC<BrandAdProps> = ({showCaptions}) => {
 
 			{showCaptions ? <Captions /> : null}
 
-			{music ? (
-				<Html5Audio
-					src={music.src}
-					volume={(f) =>
-						interpolate(f, [0, FPS / 2, durationInFrames - FPS * 2, durationInFrames], [0, 1, 1, 0], {
-							extrapolateLeft: 'clamp',
-							extrapolateRight: 'clamp',
-						})
-					}
-				/>
+			{hasAsset(AUDIO_FILES.score) ? (
+				<Html5Audio src={staticFile(AUDIO_FILES.score)} volume={(f) => scoreVolume(f, voiceCues.length > 0)} />
 			) : null}
+			{hasAsset(AUDIO_FILES.sfx) ? <Html5Audio src={staticFile(AUDIO_FILES.sfx)} volume={MIX.sfx} /> : null}
+			{voiceCues.map((cue) => (
+				<Sequence key={cue.id} name={`Voice: ${cue.id}`} from={cue.from} layout="none">
+					<Html5Audio src={staticFile(AUDIO_FILES.voice(cue.id))} volume={MIX.voice} />
+				</Sequence>
+			))}
 		</AbsoluteFill>
 	);
 };

@@ -12,6 +12,6 @@ export const RemotionRoot: React.FC = () => (
 		fps={FPS}
 		width={WIDTH}
 		height={HEIGHT}
-		defaultProps={{showCaptions: true}}
+		defaultProps={{showCaptions: true, voiceover: true}}
 	/>
 );
