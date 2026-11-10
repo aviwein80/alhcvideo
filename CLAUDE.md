@@ -107,7 +107,8 @@ remotion.config.ts      Public dir, codec, quality
 
 ### Copy and compliance (healthcare marketing)
 - All on-screen text lives in `src/content.ts`; caption text lives in
-  `src/captions.ts`. Scenes never hard-code copy.
+  `src/captions.ts`. Scenes never hard-code copy (the only generated text is
+  the 01/02/03 numbering on the service cards).
 - Every claim must appear in the claims register in `docs/research.md` with a
   public company source. When copy changes, update the register in the same
   commit.

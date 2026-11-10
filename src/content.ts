@@ -15,6 +15,8 @@ export const CONTENT = {
 	// cornerstones of each Autumn Lake Healthcare center."
 	cornerstones: {
 		left: ['Clinical', 'excellence'],
+		// The sentence's "and", shown as a badge where the two blocks meet.
+		joiner: '&',
 		right: ['Compassionate', 'care'],
 		lines: ['The cornerstones of each', 'Autumn Lake Healthcare center.'],
 	},

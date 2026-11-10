@@ -42,7 +42,7 @@ const Block: React.FC<{lines: readonly string[]; color: string; side: 'left' | '
 /** Scene 3 — two blocks lock together: the cornerstones of each center. */
 export const Cornerstones: React.FC = () => {
 	const frame = useCurrentFrame();
-	const {left, right, lines} = CONTENT.cornerstones;
+	const {left, right, joiner, lines} = CONTENT.cornerstones;
 	const meet = beats(1.5);
 
 	const offset = interpolate(frame, [2, meet], [1150, 0], {
@@ -104,7 +104,7 @@ export const Cornerstones: React.FC = () => {
 							transform: `scale(${pop(frame, meet + 1)})`,
 						}}
 					>
-						<span style={{marginTop: -6}}>&amp;</span>
+						<span style={{marginTop: -6}}>{joiner}</span>
 					</div>
 				</div>
 				<div style={{height: 76}} />

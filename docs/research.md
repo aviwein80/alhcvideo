@@ -129,7 +129,7 @@ such. The copy itself lives in `src/content.ts` and `src/captions.ts`.
 | ID | On-screen text | Scene | Source | Match |
 |----|----------------|-------|--------|-------|
 | C1 | "Our philosophy" (label) / "The healing process should be holistic." | 2 | S1: "Autumn Lake Healthcare's centers have a philosophy, and we maintain that the healing process should be holistic." | Verbatim fragment; label paraphrases "have a philosophy" |
-| C2 | "Clinical excellence" / "Compassionate care" / "The cornerstones of each Autumn Lake Healthcare center." | 3 | S1: "Clinical excellence and compassionate care are the cornerstones of each Autumn Lake Healthcare center." | Verbatim, split across three elements |
+| C2 | "Clinical excellence" / "&" / "Compassionate care" / "The cornerstones of each Autumn Lake Healthcare center." | 3 | S1: "Clinical excellence and compassionate care are the cornerstones of each Autumn Lake Healthcare center." | Verbatim, split across elements; "and" shown as "&" |
 | C3 | "Comprehensive care services" / "Short-term rehabilitation" / "Long-term care" / "Focused on supporting recovery, comfort, and overall wellness." | 4 | S1: "These centers provide comprehensive care services, including short-term rehabilitation and long-term care, focused on supporting recovery, comfort, and overall wellness." Corroborated for other states by S3–S6. | Verbatim fragments |
 | C4 | "Personalized treatment plans" | 4 | S1: "Each location delivers personalized treatment plans in a warm, supportive environment…" | Verbatim fragment |
 | C5 | "Doctors." / "Therapists." / "Specialists." / "A comprehensive team" / "devoted to creating personalized havens of hospitality." | 5 | S1: "…doctors, therapists, and specialists comprise a comprehensive team devoted to creating personalized havens of hospitality throughout each individual's recovery process." | Verbatim fragments |
@@ -140,7 +140,8 @@ such. The copy itself lives in `src/content.ts` and `src/captions.ts`.
 | C10 | "732-358-6883" | 9 | S1 footer: "Phone: 732-358-6883" | Verbatim |
 | C11 | Footer disclaimer (three sentences beginning "Autumn Lake Healthcare is a management company…") | 9 | S1 footer | Verbatim |
 | C12 | Photos of center exteriors | 6 | S1 images (`/wp-content/uploads/sites/40/2025/11/…`) | Official imagery, unlabeled |
-| — | "Find a center near you" | 9 | Call to action, not a claim. Mirrors S1 links "SEE CENTERS" / "View a full list of Autumn Facilities". | Original wording |
+| — | "Find a center near you" | 9 | Call to action, not a claim. Mirrors S1 links "see centers" / "View a full list of Autumn Facilities". | Original wording |
+| — | "01", "02", "03" on the service cards | 4 | Card numbering, generated in the scene. Decorative, not a statistic. | Not a claim |
 
 ### Caption (narration script) lines
 
