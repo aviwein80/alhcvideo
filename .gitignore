@@ -3,3 +3,8 @@ out/
 dist/
 .DS_Store
 *.log
+
+# Local caches for the audio build (voice model, virtualenv)
+.cache/
+.venv/
+__pycache__/
