@@ -6,9 +6,8 @@
   "scripts": {
     "studio": "remotion studio",
     "render": "remotion render BrandAd out/autumn-lake-brand-ad.mp4",
-    "still": "remotion still BrandAd",
-    "captions": "node scripts/export-srt.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "logo": "node scripts/extract-logo-paths.mjs"
   },
   "dependencies": {
     "@remotion/cli": "4.0.542",
